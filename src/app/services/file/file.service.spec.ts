@@ -40,5 +40,17 @@ describe('FileService', () => {
     });
   });
 
+  it('should update files', (done) => {
+    const fileModel1 = new FileModel(1, 'Test1.txt', 'File content 1', '5 KB');
+    const fileModel2 = new FileModel(2, 'Test2.text', 'File content 2', '8 KB');
+    service.updateFiles([fileModel1, fileModel2]);
+
+    service.getFiles().subscribe((files) => {
+      expect(files.length).toBe(2);
+      expect(files).toContain(fileModel1);
+      expect(files).toContain(fileModel2);
+      done();
+    });
+  });
 });
 
