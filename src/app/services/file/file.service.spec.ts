@@ -29,5 +29,16 @@ describe('FileService', () => {
       done();
     });
   });
+
+  it('should delete a file', () => {
+    const fileModel = new FileModel(1, 'Test.txt', 'File content', '10 KB');
+    service.addFile(fileModel);
+
+    service.deleteFile(fileModel);
+    service.getFiles().subscribe((files) => {
+      expect(files).not.toContain(fileModel);
+    });
+  });
+
 });
 

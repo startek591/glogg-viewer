@@ -27,4 +27,14 @@ export class FileService {
   updateFiles(newFiles: FileModel[]) {
     this.files.next(newFiles);
   }
+
+  deleteFile(file: FileModel) {
+    const currentFiles = this.files.value;
+    const index = currentFiles.indexOf(file);
+
+    if (index !== -1) {
+      currentFiles.splice(index, 1);
+      this.updateFiles(currentFiles);
+    }
+  }
 }
