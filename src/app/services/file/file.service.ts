@@ -16,4 +16,15 @@ export class FileService {
   getFiles(): Observable<FileModel[]> {
     return this.files.asObservable();
   }
+
+  addFile(file: FileModel) {
+    const currentFiles = this.files.value;
+    currentFiles.push(file);
+    this.updateFiles(currentFiles);
+    this.addedFileSubject.next(file);
+  }
+
+  updateFiles(newFiles: FileModel[]) {
+    this.files.next(newFiles);
+  }
 }

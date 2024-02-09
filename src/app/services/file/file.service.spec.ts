@@ -19,5 +19,15 @@ describe('FileService', () => {
         expect(files.length).toBe(0);
       });
   });
+
+  it('should add a file', (done) => {
+    const fileModel = new FileModel(1, 'Test.txt', 'File content', '10 KB');
+    service.addFile(fileModel);
+
+    service.getFiles().subscribe((files) => {
+      expect(files).toContain(fileModel);
+      done();
+    });
+  });
 });
 
