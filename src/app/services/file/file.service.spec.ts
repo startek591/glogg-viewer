@@ -15,9 +15,9 @@ describe('FileService', () => {
   });
 
   it('should have be initialize with no files', () => {
-      service.getFiles().subscribe((files) => {
-        expect(files.length).toBe(0);
-      });
+    service.getFiles().subscribe((files) => {
+      expect(files.length).toBe(0);
+    });
   });
 
   it('should add a file', (done) => {
@@ -52,5 +52,49 @@ describe('FileService', () => {
       done();
     });
   });
-});
 
+  it('should read a file', (done) => {
+    const fileContent = 'File content';
+    const blob = new Blob([fileContent], { type: 'text/plain' });
+    const mockFile = new File([blob], 'Test.txt', { type: 'text/plain ' });
+
+    const obserable = service.readFile(mockFile);
+    obserable.subscribe((fileContent) => {
+      expect(fileContent).toEqual('File content');
+      done();
+    });
+  });
+
+  it('should modify the file name with a capitalize letter', () => {
+    const originalName = 'test.txt';
+    const modifiedName = service.modifiedName(originalName);
+
+    expect(modifiedName).toBe('Test.txt');
+  });
+
+  it('should return "0 B" for fileSizeInBytes === 0', () => {
+    const fileSizeInBytes = 0;
+    const result = service.calculateFileSize(fileSizeInBytes);
+    expect(result).toBe('0 B');
+  });
+
+  it('should return "1.00 KB" for fileSizeInBytes < 1024', () => {
+    const fileSizeInBytes = 512;
+    const result = service.calculateFileSize(fileSizeInBytes);
+    expect(result).toBe('0.50 KB');
+  });
+
+  it('should return "1.00 MB" for fileSizeInBytes < 1024 * 1024 * 1024', () => {
+    const fileSizeInBytes = 1024 * 1024;
+    const result = service.calculateFileSize(fileSizeInBytes);
+
+    expect(result).toBe('1.00 MB');
+  });
+
+  it('should return "1.00 GB" for fileSizeInBytes >= 1024 * 1024 * 1024', () => {
+    const fileSizeInBytes = 1024 * 1024 * 1024;
+    const result = service.calculateFileSize(fileSizeInBytes);
+
+    expect(result).toBe('1.00 GB');
+  });
+});
