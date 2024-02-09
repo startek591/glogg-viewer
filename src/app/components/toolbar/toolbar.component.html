@@ -1,1 +1,11 @@
-<p>toolbar works!</p>
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <p-button
+      label="File"
+      icon="pi pi-file"
+      styleClass="p-button-raised p-button-text"
+      (click)="handleFileButtonClick()"
+    ></p-button>
+    <input type="file" #fileInput class="hidden" multiple />
+  </div>
+</p-toolbar>
