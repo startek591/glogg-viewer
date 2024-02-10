@@ -6,6 +6,7 @@ import {
 } from '@angular/core/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ToolbarComponent } from './toolbar.component';
+import { HighlightingDialogComponent } from '../highlighting-dialog/highlighting-dialog.component';
 import { FileService } from 'src/app/services/file/file.service';
 import { By } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
@@ -19,7 +20,7 @@ describe('ToolbarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ToolbarComponent],
+      declarations: [ToolbarComponent, HighlightingDialogComponent],
       imports: [SharedModule],
       providers: [FileService, MessageService],
     });

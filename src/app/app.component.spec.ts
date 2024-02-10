@@ -2,12 +2,19 @@ import { TestBed } from '@angular/core/testing';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { HighlightingDialogComponent } from './components/highlighting-dialog/highlighting-dialog.component';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent, ToolbarComponent],
-    imports: [SharedModule]
-  }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent,
+        ToolbarComponent,
+        HighlightingDialogComponent,
+      ],
+      imports: [SharedModule],
+    })
+  );
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

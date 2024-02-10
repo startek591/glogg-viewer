@@ -25,6 +25,18 @@
       aria-label="Highlighting Panel"
       styleCalss="p-button-raised p-button-text"
     ></p-button>
+    <p-dialog
+      header="Highlighting Settings"
+      [modal]="true"
+      [(visible)]="visible"
+      styleClass="dialog-custom-width"
+      [closable]="true"
+    >
+      <app-highlighting-dialog
+        [visible]="visible"
+        (dialogChanged)="closeDialog($event)"
+      ></app-highlighting-dialog>
+    </p-dialog>
   </div>
 </p-toolbar>
 <p-toast></p-toast>

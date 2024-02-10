@@ -5,6 +5,11 @@ import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { DialogModule } from 'primeng/dialog';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 const modules = [
   CardModule,
@@ -12,6 +17,11 @@ const modules = [
   ButtonModule,
   DividerModule,
   ToastModule,
+  DialogModule,
+  ColorPickerModule,
+  FormsModule,
+  InputTextModule,
+  InputTextareaModule,
 ];
 
 @NgModule({

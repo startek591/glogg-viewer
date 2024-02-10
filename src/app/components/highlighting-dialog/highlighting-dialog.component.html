@@ -1,0 +1,121 @@
+<h3>Debug</h3>
+<p-divider></p-divider>
+<div class="formgrid grid justify-content-evenly">
+  <div class="field">
+    <label>Background Color</label>
+    <div>
+      <p-colorPicker
+        id="debug-color"
+        class="color-picker-styles readonly-color-picker"
+        [(ngModel)]="debugColor"
+        format="hex"
+      ></p-colorPicker>
+    </div>
+    <div class="mt-2 mr-4">Hex: {{ debugColor }}</div>
+  </div>
+  <div class="field">
+    <label for="debug-expr">Regular Expression</label>
+    <div>
+      <input
+        type="text"
+        id="debug-expr"
+        pInputText
+        placeholder="DEBUG"
+        [readonly]="true"
+      />
+    </div>
+  </div>
+</div>
+<h3>Info</h3>
+<p-divider></p-divider>
+<div class="formgrid grid justify-content-evenly">
+  <div class="field">
+    <label>Background Color</label>
+    <div>
+      <p-colorPicker
+        id="info-color"
+        class="color-picker-styles readonly-color-picker"
+        [(ngModel)]="infoColor"
+        format="hex"
+      ></p-colorPicker>
+      <div class="mt-2 mr-4">Hex: {{ infoColor }}</div>
+    </div>
+  </div>
+  <div class="field">
+    <label>Regular Expression</label>
+    <div>
+      <input
+        type="text"
+        id="info-expr"
+        pInputText
+        placeholder="INFO"
+        [readonly]="true"
+      />
+    </div>
+  </div>
+</div>
+<h3>Warning</h3>
+<p-divider></p-divider>
+<div class="formgrid grid justify-content-evenly">
+  <div class="field">
+    <label>Background Color</label>
+    <div>
+      <p-colorPicker
+        id="warning-color"
+        class="color-picker-styles readonly-color-picker"
+        [(ngModel)]="warningColor"
+        format="hex"
+      ></p-colorPicker>
+      <div class="mt-2 mr-4">Hex: {{ warningColor }}</div>
+    </div>
+  </div>
+  <div class="field">
+    <label For="warning-expr">Regular Expression</label>
+    <div>
+      <input
+        type="text"
+        id="warning-expr"
+        pInputText
+        placeholder="WARNING"
+        [readonly]="true"
+      />
+    </div>
+  </div>
+</div>
+<h3>Error</h3>
+<p-divider></p-divider>
+<div class="formgrid grid justify-content-evenly">
+  <div class="field">
+    <label>Background Color</label>
+    <div>
+      <p-colorPicker
+        class="color-picker-styles"
+        class="color-picker-styles readonly-color-picker"
+        id="error-color"
+        [(ngModel)]="errorColor"
+        format="hex"
+      ></p-colorPicker>
+      <div class="mt-2 mr-4">Hex: {{ errorColor }}</div>
+    </div>
+  </div>
+  <div class="field">
+    <label for="info-expr">Regular Expression</label>
+    <div>
+      <input
+        type="text"
+        id="error-expr"
+        pInputText
+        placeholder="ERROR"
+        [readonly]="true"
+      />
+    </div>
+  </div>
+</div>
+<div class="formgrid grid gap-1 justify-content-end">
+  <p-button
+    (click)="closeDialog()"
+    label="OK"
+    pAutoFocus
+    [autofocus]="true"
+  ></p-button>
+</div>
