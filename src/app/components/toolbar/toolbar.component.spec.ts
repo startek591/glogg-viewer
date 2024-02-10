@@ -98,4 +98,16 @@ describe('ToolbarComponent', () => {
       detail: 'Selected file is not compatible',
     });
   }));
+
+  it('should display highlighting dialog panel', () => {
+    expect(component.visible).toBeFalsy();
+    component.showDialog();
+    expect(component.visible).toBeTruthy();
+  });
+
+  it('should close dialog highlighting dialog panel', () => {
+    component.visible = true;
+    component.closeDialog(false);
+    expect(component.visible).toBe(false);
+  });
 });

@@ -3,9 +3,25 @@
     <p-button
       label="File"
       icon="pi pi-file"
+      aria-label="File"
       styleClass="p-button-raised p-button-text"
       (click)="handleFileButtonClick()"
     ></p-button>
-    <input type="file" #fileInput class="hidden" multiple />
+    <input
+      type="file"
+      #fileInput
+      class="hidden"
+      (change)="onFileSelected($event)"
+      multiple
+    />
+    <p-divider layout="vertical"></p-divider>
+    <p-button
+      (click)="showDialog()"
+      label="Highlighting"
+      icon="pi pi-external-link"
+      aria-label="Highlighting Panel"
+      styleCalss="p-button-raised p-button-text"
+    ></p-button>
   </div>
 </p-toolbar>
+<p-toast></p-toast>

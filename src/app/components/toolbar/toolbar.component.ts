@@ -10,9 +10,11 @@ import { MessageService } from 'primeng/api';
 })
 export class ToolbarComponent {
   files: FileModel[] = [];
+  activeIndex: number = 0;
+  visible: boolean = false;
   fileContent!: string;
   fileSize!: string;
-  searchTest!: string;
+  searchText!: string;
   isDisabled: boolean = false;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
@@ -52,5 +54,13 @@ export class ToolbarComponent {
         });
       }
     }
+  }
+
+  showDialog() {
+    this.visible = true;
+  }
+
+  closeDialog(event: any) {
+    this.visible = event;
   }
 }
