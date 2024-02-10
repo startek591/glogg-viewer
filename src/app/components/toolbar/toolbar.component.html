@@ -7,13 +7,16 @@
       styleClass="p-button-raised p-button-text"
       (click)="handleFileButtonClick()"
     ></p-button>
-    <input
-      type="file"
-      #fileInput
-      class="hidden"
-      (change)="onFileSelected($event)"
-      multiple
-    />
+    <label for="fileInput">
+      <input
+        type="file"
+        #fileInput
+        id="fileInput"
+        class="hidden"
+        (change)="onFileSelected($event)"
+        multiple
+      />
+    </label>
     <p-divider layout="vertical"></p-divider>
     <p-button
       (click)="showDialog()"
