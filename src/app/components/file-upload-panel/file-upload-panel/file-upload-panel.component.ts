@@ -53,7 +53,6 @@ export class FileUploadPanelComponent implements OnChanges {
     ) {
       const droppedFiles = event.dataTransfer?.files[0];
       const fileType = event.dataTransfer?.files[0]?.type;
-      const selection = window.getSelection();
       if (droppedFiles && fileType === 'text/plain') {
         this.fileService.readFile(droppedFiles).subscribe((content: string) => {
           this.fileContent = content;
