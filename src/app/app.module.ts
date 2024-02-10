@@ -5,9 +5,10 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HighlightingDialogComponent } from './components/highlighting-dialog/highlighting-dialog.component';
+import { FileUploadPanelComponent } from './components/file-upload-panel/file-upload-panel/file-upload-panel.component';
 
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent, HighlightingDialogComponent],
+  declarations: [AppComponent, ToolbarComponent, HighlightingDialogComponent, FileUploadPanelComponent],
   imports: [BrowserModule, BrowserAnimationsModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],

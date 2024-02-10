@@ -1,0 +1,11 @@
+<div class="drop-zone border-1 surface-border border-round pt-3 pb-3">
+  <div
+    *ngIf="fileList.length === 0"
+    class="flex flex-column w-full h-full justify-content-center align-items-center cursor-pointer scroll-panel-container drop-zone"
+  >
+    <i class="pi pi-fw pi-file text-4xl text-primary w-full drop-zone"></i>
+    <span class="block font-semibold text-900 text-lg mt-3 drop-zone"
+      >Drop or select a file</span
+    >
+  </div>
+</div>
