@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FileModel } from 'src/app/models/file.model';
 import { FileService } from 'src/app/services/file/file.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-toolbar',
@@ -15,7 +16,10 @@ export class ToolbarComponent {
   isDisabled: boolean = false;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private fileService: FileService) {}
+  constructor(
+    private fileService: FileService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -30,5 +34,23 @@ export class ToolbarComponent {
   handleFileButtonClick() {
     this.fileInput.nativeElement.click();
     this.fileInput.nativeElement.value = '';
+  }
+
+  onFileSelected(event: any) {
+    const selectedFiles = event.target.files;
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const selectedFile = selectedFiles[i];
+      if (selectedFile.type !== 'text/plain') {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'File Type Error',
+          detail: `Selected file is not compatible`,
+        });
+      } else {
+        this.fileService.readFile(selectedFile).subscribe((content: string) => {
+          this.fileContent = content;
+        });
+      }
+    }
   }
 }
