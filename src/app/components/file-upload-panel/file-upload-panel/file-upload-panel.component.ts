@@ -1,5 +1,6 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   Output,
@@ -14,9 +15,11 @@ import { FileService } from 'src/app/services/file/file.service';
   styleUrls: ['./file-upload-panel.component.scss'],
 })
 export class FileUploadPanelComponent implements OnChanges {
-  @Input() fileList: FileModel[] = [];
+  @Input() fileList: any[] = [];
   @Input() activeIndex: number = 0;
   fileContent: string | null = null;
+  @Output() tabChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() tabsChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   constructor(private fileService: FileService) {}
 
@@ -26,6 +29,16 @@ export class FileUploadPanelComponent implements OnChanges {
         this.fileList;
       }
     }
+  }
+
+  onTabChange(event: any) {
+    this.activeIndex = event;
+    this.fileList[this.activeIndex];
+  }
+
+  onClose(event: any) {
+    const closedTabIndex = this.fileList[event.index];
+    this.fileService.deleteFile(closedTabIndex);
   }
 
   @HostListener('document:dragover', ['$event'])
@@ -40,6 +53,7 @@ export class FileUploadPanelComponent implements OnChanges {
     ) {
       const droppedFiles = event.dataTransfer?.files[0];
       const fileType = event.dataTransfer?.files[0]?.type;
+      const selection = window.getSelection();
       if (droppedFiles && fileType === 'text/plain') {
         this.fileService.readFile(droppedFiles).subscribe((content: string) => {
           this.fileContent = content;
@@ -48,6 +62,12 @@ export class FileUploadPanelComponent implements OnChanges {
     } else {
       event.dataTransfer.effectAllowed = 'none';
       event.dataTransfer.dropEffect = 'none';
+    }
+  }
+
+  addTab(): void {
+    if (this.activeIndex === this.fileList.length) {
+      this.fileList.push({ title: '', content: '' });
     }
   }
 }

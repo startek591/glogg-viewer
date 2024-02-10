@@ -10,6 +10,10 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { PanelModule } from 'primeng/panel';
+import { TabViewModule } from 'primeng/tabview';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { TooltipModule } from 'primeng/tooltip';
 
 const modules = [
   CardModule,
@@ -22,6 +26,10 @@ const modules = [
   FormsModule,
   InputTextModule,
   InputTextareaModule,
+  PanelModule,
+  TabViewModule,
+  ScrollPanelModule,
+  TooltipModule,
 ];
 
 @NgModule({

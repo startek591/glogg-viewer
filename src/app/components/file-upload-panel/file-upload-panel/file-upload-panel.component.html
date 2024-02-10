@@ -8,4 +8,38 @@
       >Drop or select a file</span
     >
   </div>
+  <div *ngIf="fileList.length >= 1">
+    <p-tabView
+      [(activeIndex)]="activeIndex"
+      (activeIndexChange)="onTabChange($event)"
+      (onClose)="onClose($event)"
+    >
+      <p-tabPanel
+        *ngFor="let file of fileList; let i = index"
+        class="flex flex-column"
+        [header]="file.name"
+        [closable]="true"
+      >
+        <p class="text-sm font-bold">Size: {{ file.size }}</p>
+        <p-scrollPanel styleClass="custom-scroll-panel"> </p-scrollPanel>
+      </p-tabPanel>
+      <p-tabPanel class="m-r-2" (click)="addTab()" header="New">
+        <ng-template pTemplate="header">
+          <i class="pi pi-plus-circle" pTooltip="Add New Panel"></i>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div
+            class="drop-zone flex flex-column w-full h-full justify-content-center align-items-center cursor-pointer scroll-panel-container"
+          >
+            <i
+              class="pi pi-fw pi-file text-4xl text-primary w-full drop-zone"
+            ></i>
+            <span class="block font-semibold text-900 text-lg mt-3 drop-zone"
+              >Drop or select a file</span
+            >
+          </div>
+        </ng-template>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
 </div>

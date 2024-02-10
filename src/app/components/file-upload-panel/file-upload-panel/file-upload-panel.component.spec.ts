@@ -63,4 +63,14 @@ describe('FileUploadPanelComponent', () => {
     expect(event.target.matches).toHaveBeenCalledWith('div.drop-zone');
     expect(component.fileContent).toBeNull();
   });
+
+  it('should add a new tab', () => {
+    component.fileList = [{ title: 'File 1', content: 'Content 1' }];
+    component.activeIndex = 1;
+
+    component.addTab();
+
+    expect(component.fileList.length).toEqual(2);
+    expect(component.fileList[1]).toEqual({ title: '', content: '' });
+  });
 });
