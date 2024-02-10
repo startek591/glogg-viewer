@@ -4,7 +4,7 @@ import {
   fakeAsync,
   tick,
 } from '@angular/core/testing';
-import { FileService } from '../../../services/file/file.service';
+import { FileService } from '../../services/file/file.service';
 import { FileUploadPanelComponent } from './file-upload-panel.component';
 import { of } from 'rxjs';
 

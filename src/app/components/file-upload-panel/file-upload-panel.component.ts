@@ -7,7 +7,6 @@ import {
   SimpleChanges,
   HostListener,
 } from '@angular/core';
-import { FileModel } from 'src/app/models/file.model';
 import { FileService } from 'src/app/services/file/file.service';
 @Component({
   selector: 'app-file-upload-panel',
