@@ -14,6 +14,7 @@ import { PanelModule } from 'primeng/panel';
 import { TabViewModule } from 'primeng/tabview';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { TooltipModule } from 'primeng/tooltip';
+import { TableModule } from 'primeng/table';
 
 const modules = [
   CardModule,
@@ -30,6 +31,7 @@ const modules = [
   TabViewModule,
   ScrollPanelModule,
   TooltipModule,
+  TableModule,
 ];
 
 @NgModule({

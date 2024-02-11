@@ -21,7 +21,9 @@
         [closable]="true"
       >
         <p class="text-sm font-bold">Size: {{ file.size }}</p>
-        <p-scrollPanel styleClass="custom-scroll-panel"> </p-scrollPanel>
+        <p-scrollPanel styleClass="custom-scroll-panel">
+          <app-custom-table [data]="file.content"></app-custom-table>
+        </p-scrollPanel>
       </p-tabPanel>
       <p-tabPanel class="m-r-2" (click)="addTab()" header="New">
         <ng-template pTemplate="header">
