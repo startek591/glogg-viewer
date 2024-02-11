@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TableService } from '../../services/table/table.service';
 import { CustomTableComponent } from './custom-table.component';
 import { SharedModule } from '../../shared/shared.module';
+import { SearchPipe } from '../../pipes/search/search.pipe';
 
 describe('CustomTableComponent', () => {
   let component: CustomTableComponent;
@@ -10,7 +11,7 @@ describe('CustomTableComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomTableComponent],
+      declarations: [CustomTableComponent, SearchPipe],
       imports: [SharedModule],
     });
     fixture = TestBed.createComponent(CustomTableComponent);

@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FileModel } from 'src/app/models/file.model';
 import { FileService } from 'src/app/services/file/file.service';
 import { MessageService } from 'primeng/api';
+import { SearchService } from 'src/app/services/search/search.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -20,7 +21,8 @@ export class ToolbarComponent {
 
   constructor(
     private fileService: FileService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
@@ -62,5 +64,23 @@ export class ToolbarComponent {
 
   closeDialog(event: any) {
     this.visible = event;
+  }
+
+  onSearchText() {
+    if (this.shouldBeDisabled()) {
+      this.searchService.setSearchText(this.searchText);
+    } else {
+      this.searchService.setSearchText(this.searchText);
+    }
+  }
+
+  shouldBeDisabled(): boolean {
+    if (this.files.length !== 0) {
+      return false;
+    } else {
+      this.searchText = '';
+      this.searchService.setSearchText(this.searchText);
+      return true;
+    }
   }
 }

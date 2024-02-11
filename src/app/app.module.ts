@@ -7,6 +7,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HighlightingDialogComponent } from './components/highlighting-dialog/highlighting-dialog.component';
 import { FileUploadPanelComponent } from './components/file-upload-panel/file-upload-panel.component';
 import { CustomTableComponent } from './components/custom-table/custom-table.component';
+import { SearchPipe } from './pipes/search/search.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CustomTableComponent } from './components/custom-table/custom-table.com
     HighlightingDialogComponent,
     FileUploadPanelComponent,
     CustomTableComponent,
+    SearchPipe,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, SharedModule],
   providers: [],

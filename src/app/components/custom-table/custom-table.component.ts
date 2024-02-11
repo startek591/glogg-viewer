@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileModel } from 'src/app/models/file.model';
 import { TableService } from '../../services/table/table.service';
+import { SearchService } from 'src/app/services/search/search.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-custom-table',
@@ -26,10 +28,18 @@ export class CustomTableComponent implements OnInit {
       { word: 'ERROR', textColor: '#721C24', backgroundColor: '#FF5252E6' },
     ];
 
-  constructor(private tableServe: TableService) {}
+  constructor(
+    private tableServe: TableService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     this.loadData(this.data);
+    this.searchService.searchText$
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((results) => {
+        this.searchResults = results;
+      });
   }
 
   loadData(content: any) {

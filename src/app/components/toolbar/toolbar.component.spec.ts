@@ -4,20 +4,23 @@ import {
   fakeAsync,
   tick,
 } from '@angular/core/testing';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { ToolbarComponent } from './toolbar.component';
 import { HighlightingDialogComponent } from '../highlighting-dialog/highlighting-dialog.component';
 import { FileUploadPanelComponent } from '../file-upload-panel/file-upload-panel.component';
-import { FileService } from 'src/app/services/file/file.service';
+import { FileService } from '../../services/file/file.service';
 import { By } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
 import { of } from 'rxjs';
+import { SearchService } from '../../services/search/search.service';
+import { FileModel } from '../../models/file.model';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
   let fileService: FileService;
   let messageService: MessageService;
+  let searchService: SearchService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -34,6 +37,7 @@ describe('ToolbarComponent', () => {
     fixture.detectChanges();
     fileService = TestBed.inject(FileService);
     messageService = TestBed.inject(MessageService);
+    searchService = TestBed.inject(SearchService);
   });
 
   it('should create', () => {
@@ -115,5 +119,47 @@ describe('ToolbarComponent', () => {
     component.visible = true;
     component.closeDialog(false);
     expect(component.visible).toBe(false);
+  });
+
+  it('should set search text when not disabled', () => {
+    component.files = [
+      new FileModel(1, 'file1', 'Test 1', '10KB'),
+      new FileModel(2, 'file2', 'Test 2', '1 GB'),
+    ];
+    component.searchText = 'test';
+
+    spyOn(searchService, 'setSearchText');
+
+    component.onSearchText();
+
+    expect(searchService.setSearchText).toHaveBeenCalledWith('test');
+  });
+
+  it('should set search text to empty when disabled', () => {
+    component.files = [];
+    component.searchText = 'test';
+
+    spyOn(searchService, 'setSearchText');
+
+    component.onSearchText();
+
+    expect(searchService.setSearchText).toHaveBeenCalledWith('');
+    expect(component.searchText).toBe('');
+  });
+
+  it('shouldBeDisabled should return true when files array is empty', () => {
+    component.files = [];
+
+    expect(component.shouldBeDisabled()).toBeTrue();
+    expect(component.searchText).toBe('');
+  });
+
+  it('shouldBeDisabled should return false when files array is not empty', () => {
+    component.files = [
+      new FileModel(1, 'file1', 'Test 1', '10KB'),
+      new FileModel(2, 'file2', 'Test 2', '1 GB'),
+    ];
+
+    expect(component.shouldBeDisabled()).toBeFalse();
   });
 });

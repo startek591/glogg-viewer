@@ -38,6 +38,19 @@
       ></app-highlighting-dialog>
     </p-dialog>
   </div>
+  <div class="p-toolbar-group-end gap-2">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="searchText"
+        (keyup)="onSearchText()"
+        placeholder="Search"
+        [disabled]="shouldBeDisabled()"
+      />
+    </span>
+  </div>
 </p-toolbar>
 <p-toast></p-toast>
 <app-file-upload-panel [activeIndex]="activeIndex" [fileList]="files">
