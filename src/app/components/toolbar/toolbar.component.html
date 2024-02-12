@@ -44,7 +44,7 @@
       placeholder="Select Log Level"
       (onChange)="setSelectedFilter($event.value)"
       [disabled]="shouldBeDisabled()"
-      display="chip"
+      [filter]="true"
     ></p-multiSelect>
   </div>
   <div class="p-toolbar-group-end gap-2">

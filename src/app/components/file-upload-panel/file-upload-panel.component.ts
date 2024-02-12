@@ -16,7 +16,7 @@ import { SearchService } from '../../services/search/search.service';
 })
 export class FileUploadPanelComponent implements OnChanges {
   @Input() fileList: any[] = [];
-  @Input() activeIndex: number = 0;
+  @Input() activeIndex!: number;
   fileContent: string | null = null;
   @Output() tabChange: EventEmitter<any> = new EventEmitter<any>();
   @Output() tabsChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
@@ -52,6 +52,9 @@ export class FileUploadPanelComponent implements OnChanges {
   onDragDropFileVerifyZone(event: any) {
     event.preventDefault();
     const element = event.target as HTMLElement;
+    const droppedText = event.dataTransfer?.getData
+      ? event.dataTransfer.getData('text')
+      : null;
     if (
       element.matches('div.drop-zone') ||
       element.matches('span.drop-zone') ||
@@ -67,6 +70,16 @@ export class FileUploadPanelComponent implements OnChanges {
     } else {
       event.dataTransfer.effectAllowed = 'none';
       event.dataTransfer.dropEffect = 'none';
+    }
+
+    if (droppedText) {
+      const blob = new Blob([droppedText], { type: 'text/plain' });
+
+      const file = new File([blob], 'dropped_text.txt', { type: 'text/plain' });
+
+      this.fileService.readFile(file).subscribe((content: string) => {
+        this.fileContent = content;
+      });
     }
   }
 
