@@ -8,6 +8,7 @@ import { HighlightingDialogComponent } from './components/highlighting-dialog/hi
 import { FileUploadPanelComponent } from './components/file-upload-panel/file-upload-panel.component';
 import { CustomTableComponent } from './components/custom-table/custom-table.component';
 import { SearchPipe } from './pipes/search/search.pipe';
+import { CustomFilterPipe } from './pipes/custom-filter/custom-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SearchPipe } from './pipes/search/search.pipe';
     FileUploadPanelComponent,
     CustomTableComponent,
     SearchPipe,
+    CustomFilterPipe,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, SharedModule],
   providers: [],

@@ -3,6 +3,7 @@ import { TableService } from '../../services/table/table.service';
 import { CustomTableComponent } from './custom-table.component';
 import { SharedModule } from '../../shared/shared.module';
 import { SearchPipe } from '../../pipes/search/search.pipe';
+import { CustomFilterPipe } from 'src/app/pipes/custom-filter/custom-filter.pipe';
 
 describe('CustomTableComponent', () => {
   let component: CustomTableComponent;
@@ -11,7 +12,7 @@ describe('CustomTableComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CustomTableComponent, SearchPipe],
+      declarations: [CustomTableComponent, SearchPipe, CustomFilterPipe],
       imports: [SharedModule],
     });
     fixture = TestBed.createComponent(CustomTableComponent);

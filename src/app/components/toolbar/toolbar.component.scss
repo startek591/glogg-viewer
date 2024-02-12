@@ -2,6 +2,10 @@
   width: 50%;
 }
 
+::ng-deep .p-multiselect-panel .p-multiselect-header {
+  display: none;
+}
+
 ::ng-deep p-toolbar {
   margin: 0;
 }

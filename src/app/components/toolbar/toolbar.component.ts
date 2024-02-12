@@ -19,19 +19,38 @@ export class ToolbarComponent {
   isDisabled: boolean = false;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
+  filterOptions: { label: string; value: string }[] = [];
+
+  selectedFilters: string[] = this.filterOptions.map((option) => option.value);
+  currentfilterOptions: string[] = [];
+
   constructor(
     private fileService: FileService,
     private messageService: MessageService,
     private searchService: SearchService
-  ) {}
+  ) {
+    this.filterOptions = [
+      { label: 'INFO', value: 'INFO' },
+      { label: 'DEBUG', value: 'DEBUG' },
+      { label: 'ERROR', value: 'ERROR' },
+      { label: 'WARNING', value: 'WARNING' },
+    ];
+  }
 
   ngOnInit(): void {
     this.loadData();
+    this.loadFilterOptions();
   }
 
   loadData(): void {
     this.fileService.getFiles().subscribe((file) => {
       return (this.files = file);
+    });
+  }
+
+  loadFilterOptions(): void {
+    this.searchService.getFilterOptions().subscribe((filters) => {
+      this.selectedFilters = filters;
     });
   }
 
@@ -81,6 +100,16 @@ export class ToolbarComponent {
       this.searchText = '';
       this.searchService.setSearchText(this.searchText);
       return true;
+    }
+  }
+
+  setSelectedFilter(event: any) {
+    if (this.shouldBeDisabled()) {
+      return true;
+    } else {
+      this.selectedFilters = event;
+      this.searchService.setSelectedFilter(this.selectedFilters);
+      return false;
     }
   }
 }

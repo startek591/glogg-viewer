@@ -40,6 +40,13 @@ export class CustomTableComponent implements OnInit {
       .subscribe((results) => {
         this.searchResults = results;
       });
+
+    this.searchService
+      .getFilterOptions()
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((results) => {
+        this.selectedFilters = results;
+      });
   }
 
   loadData(content: any) {

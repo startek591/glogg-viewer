@@ -37,6 +37,15 @@
         (dialogChanged)="closeDialog($event)"
       ></app-highlighting-dialog>
     </p-dialog>
+    <p-divider layout="vertical"></p-divider>
+    <p-multiSelect
+      [options]="filterOptions"
+      [(ngModel)]="selectedFilters"
+      placeholder="Select Log Level"
+      (onChange)="setSelectedFilter($event.value)"
+      [disabled]="shouldBeDisabled()"
+      display="chip"
+    ></p-multiSelect>
   </div>
   <div class="p-toolbar-group-end gap-2">
     <span class="p-input-icon-left">

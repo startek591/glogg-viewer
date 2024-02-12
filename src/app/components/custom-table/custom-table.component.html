@@ -1,6 +1,8 @@
 <p-table
   *ngIf="fileData; else noResultsTemplate"
-  [value]="(fileData | search : searchResults) || []"
+  [value]="
+    (fileData | customFilter : selectedFilters | search : searchResults) || []
+  "
   styleClass="p-datatable-striped p-datatable-sm"
   selectionMode="multiple"
   [(selection)]="selectedFile"

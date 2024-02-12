@@ -8,6 +8,7 @@ import {
   HostListener,
 } from '@angular/core';
 import { FileService } from '../../services/file/file.service';
+import { SearchService } from '../../services/search/search.service';
 @Component({
   selector: 'app-file-upload-panel',
   templateUrl: './file-upload-panel.component.html',
@@ -20,7 +21,10 @@ export class FileUploadPanelComponent implements OnChanges {
   @Output() tabChange: EventEmitter<any> = new EventEmitter<any>();
   @Output() tabsChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-  constructor(private fileService: FileService) {}
+  constructor(
+    private fileService: FileService,
+    private searchService: SearchService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['fileList']) {
@@ -38,6 +42,9 @@ export class FileUploadPanelComponent implements OnChanges {
   onClose(event: any) {
     const closedTabIndex = this.fileList[event.index];
     this.fileService.deleteFile(closedTabIndex);
+    this.fileList.length === 0
+      ? this.searchService.resetFilterOptionsToInitial()
+      : null;
   }
 
   @HostListener('document:dragover', ['$event'])
