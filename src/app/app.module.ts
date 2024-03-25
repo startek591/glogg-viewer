@@ -9,6 +9,7 @@ import { FileUploadPanelComponent } from './components/file-upload-panel/file-up
 import { CustomTableComponent } from './components/custom-table/custom-table.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { CustomFilterPipe } from './pipes/custom-filter/custom-filter.pipe';
+import { DialogViewDirective } from './directives/dialog-view.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CustomFilterPipe } from './pipes/custom-filter/custom-filter.pipe';
     CustomTableComponent,
     SearchPipe,
     CustomFilterPipe,
+    DialogViewDirective,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, SharedModule],
   providers: [],

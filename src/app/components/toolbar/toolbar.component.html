@@ -1,66 +1,3 @@
-<!-- <p-toolbar>
-  <div class="p-toolbar-group-start">
-    <p-button
-      label="File"
-      icon="pi pi-file"
-      aria-label="File"
-      styleClass="p-button-raised p-button-text"
-      (click)="handleFileButtonClick()"
-    ></p-button>
-    <label for="fileInput">
-      <input
-        type="file"
-        #fileInput
-        id="fileInput"
-        class="hidden"
-        (change)="onFileSelected($event)"
-        multiple
-      />
-    </label>
-    <p-divider layout="vertical"></p-divider>
-    <p-button
-      (click)="showDialog()"
-      label="Highlighting"
-      icon="pi pi-external-link"
-      aria-label="Highlighting Panel"
-      styleCalss="p-button-raised p-button-text"
-    ></p-button>
-    <p-dialog
-      header="Highlighting Settings"
-      [modal]="true"
-      [(visible)]="visible"
-      styleClass="dialog-custom-width"
-      [closable]="true"
-    >
-      <app-highlighting-dialog
-        [visible]="visible"
-        (dialogChanged)="closeDialog($event)"
-      ></app-highlighting-dialog>
-    </p-dialog>
-    <p-divider layout="vertical"></p-divider>
-    <p-multiSelect
-      [options]="filterOptions"
-      [(ngModel)]="selectedFilters"
-      placeholder="Select Log Level"
-      (onChange)="setSelectedFilter($event.value)"
-      [disabled]="shouldBeDisabled()"
-      [filter]="true"
-    ></p-multiSelect>
-  </div>
-  <div class="p-toolbar-group-end gap-2">
-    <span class="p-input-icon-left">
-      <i class="pi pi-search"></i>
-      <input
-        type="text"
-        pInputText
-        [(ngModel)]="searchText"
-        (keyup)="onSearchText()"
-        placeholder="Search"
-        [disabled]="shouldBeDisabled()"
-      />
-    </span>
-  </div>
-</p-toolbar> -->
 <p-toolbar styleClass="custom-toolbar">
   <div class="p-toolbar-group justify-space-between">
     <p-button
@@ -86,6 +23,20 @@
       ariaLabel="Highlighting Panel"
       styleClass="p-button-raised p-button-text highlight-btn"
     ></p-button>
+    <div *ngIf="isLargeScreen">
+      <p-dialog
+        header="Highlighting Settings"
+        [modal]="true"
+        [(visible)]="visible"
+        styleClass="dialog-custom-width"
+        [closable]="true"
+      >
+        <app-highlighting-dialog
+          [visible]="visible"
+          (dialogChanged)="closeDialog($event)"
+        ></app-highlighting-dialog>
+      </p-dialog>
+    </div>
   </div>
   <div class="p-toolbar-group-multiselect-container">
     <p-multiSelect

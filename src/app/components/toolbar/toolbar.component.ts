@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { FileModel } from 'src/app/models/file.model';
 import { FileService } from 'src/app/services/file/file.service';
 import { MessageService } from 'primeng/api';
@@ -17,6 +17,7 @@ export class ToolbarComponent {
   fileSize!: string;
   searchText!: string;
   isDisabled: boolean = false;
+  isLargeScreen = window.innerWidth >= 540;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   filterOptions: { label: string; value: string }[] = [];
@@ -35,6 +36,8 @@ export class ToolbarComponent {
       { label: 'ERROR', value: 'ERROR' },
       { label: 'WARNING', value: 'WARNING' },
     ];
+
+    this.checkScreenSize();
   }
 
   ngOnInit(): void {
@@ -111,5 +114,14 @@ export class ToolbarComponent {
       this.searchService.setSelectedFilter(this.selectedFilters);
       return false;
     }
+  }
+
+  checkScreenSize() {
+    this.isLargeScreen = window.innerWidth >= 540;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
   }
 }

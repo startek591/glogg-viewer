@@ -19,15 +19,15 @@
   margin-left: 2em;
 }
 
+:host ::ng-deep .hightlight {
+  display: hidden;
+}
+
 @media (max-width: 540px) {
   .justify-space-between {
     display: flex;
     justify-content: space-between;
     width: 100%;
-  }
-
-  .hightlight-container {
-    display: hidden;
   }
 
   .p-toolbar-group-multiselect-container {
