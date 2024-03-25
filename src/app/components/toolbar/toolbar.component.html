@@ -1,4 +1,4 @@
-<p-toolbar>
+<!-- <p-toolbar>
   <div class="p-toolbar-group-start">
     <p-button
       label="File"
@@ -59,6 +59,53 @@
         [disabled]="shouldBeDisabled()"
       />
     </span>
+  </div>
+</p-toolbar> -->
+<p-toolbar styleClass="custom-toolbar">
+  <div class="p-toolbar-group justify-space-between">
+    <p-button
+      label="File"
+      icon="pi pi-file"
+      ariaLabel="File"
+      styleClass="p-button-raised p-button-text"
+      (click)="handleFileButtonClick()"
+    >
+    </p-button>
+    <input
+      type="file"
+      #fileInput
+      class="hidden"
+      accept=".txt"
+      (change)="onFileSelected($event)"
+      multiple
+    />
+    <p-button
+      (click)="showDialog()"
+      label="Highlighting"
+      icon="pi pi-external-link"
+      ariaLabel="Highlighting Panel"
+      styleClass="p-button-raised p-button-text highlight-btn"
+    ></p-button>
+  </div>
+  <div class="p-toolbar-group-multiselect-container">
+    <p-multiSelect
+      [options]="filterOptions"
+      [(ngModel)]="selectedFilters"
+      placeholder="Select Log Level"
+      (onChange)="setSelectedFilter($event.value)"
+      [disabled]="shouldBeDisabled()"
+      [filter]="true"
+    ></p-multiSelect>
+  </div>
+  <div class="p-toolbar-group-search-container">
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="searchText"
+      (keyup)="onSearchText()"
+      placeholder="Search"
+      [disabled]="shouldBeDisabled()"
+    />
   </div>
 </p-toolbar>
 <p-toast></p-toast>

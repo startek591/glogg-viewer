@@ -9,3 +9,40 @@
 ::ng-deep p-toolbar {
   margin: 0;
 }
+
+:host ::ng-deep .custom-toolbar {
+  width: 100%;
+  max-width: 875px;
+}
+
+:host ::ng-deep .highlight-btn {
+  margin-left: 2em;
+}
+
+@media (max-width: 540px) {
+  .justify-space-between {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .hightlight-container {
+    display: hidden;
+  }
+
+  .p-toolbar-group-multiselect-container {
+    width: 100%;
+  }
+
+  :host ::ng-deep .p-multiselect {
+    width: 100%;
+  }
+
+  .p-toolbar-group-search-container {
+    width: 100%;
+  }
+
+  .p-inputtext {
+    width: 100%;
+  }
+}
